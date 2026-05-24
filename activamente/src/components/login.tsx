@@ -57,7 +57,7 @@ export default function Login() {
                     <span style={styles.emoji}>🐰</span>
                     <h2 style={styles.title}>Iniciar Sesión</h2>
                     <p style={styles.subtitle}>
-                        Bienvenido al mundo de Chiikawa ✨
+                        Bienvenido al mundo de Acticamente ✨
                     </p>
                 </div>
 

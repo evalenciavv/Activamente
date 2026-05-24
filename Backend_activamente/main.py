@@ -1,11 +1,39 @@
 from fastapi import FastAPI, Depends
 from sqlalchemy.orm import Session
 from sqlalchemy import text
-from database import get_db
+from database import get_db, SessionLocal
 from schemas import UserRegister, UserLogin, PuntajeCreate
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+
+@app.on_event("startup")
+def seed_juegos():
+    """Registra los juegos en la BD si no existen."""
+    db = SessionLocal()
+    try:
+        juegos = [
+            (1, "Patrones", "Adivina el siguiente elemento en el patrón"),
+            (2, "Memoria", "Encuentra todas las parejas de cartas"),
+            (3, "Reflejos", "Toca el objetivo lo más rápido posible"),
+        ]
+        for game_id, nombre, descripcion in juegos:
+            db.execute(
+                text("""
+                    INSERT INTO juegos.juegos (id, nombre, descripcion)
+                    VALUES (:id, :nombre, :desc)
+                    ON CONFLICT (id) DO NOTHING
+                """),
+                {"id": game_id, "nombre": nombre, "desc": descripcion},
+            )
+        db.commit()
+        print("✅ Juegos registrados en BD")
+    except Exception as e:
+        print(f"❌ Error al registrar juegos: {e}")
+        db.rollback()
+    finally:
+        db.close()
 
 # CORS
 app.add_middleware(

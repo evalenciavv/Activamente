@@ -68,7 +68,7 @@ export default function Register() {
         <div style={styles.header}>
           <span style={styles.emoji}>🐻‍❄️</span>
           <h2 style={styles.title}>Crear cuenta</h2>
-          <p style={styles.subtitle}>Únete al mundo Chiikawa ✨</p>
+          <p style={styles.subtitle}>Únete al mundo Activamente ✨</p>
         </div>
 
         <input

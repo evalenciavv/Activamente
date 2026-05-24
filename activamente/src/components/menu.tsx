@@ -41,7 +41,7 @@ export default function Menu() {
           <h1 style={styles.title}>Menú Principal</h1>
 
           <p style={styles.subtitle}>
-            Bienvenido al mundo Chiikawa ✨
+            Bienvenido al mundo Activamente ✨
           </p>
         </div>
 
@@ -71,12 +71,18 @@ export default function Menu() {
             🧩 Juego de Patrones
           </button>
 
-          <button style={styles.disabledButton} disabled>
-            🧠 Memoria (próximamente)
+          <button
+            style={styles.gameButton}
+            onClick={() => navigate("/memoria")}
+          >
+            🧠 Juego de Memoria
           </button>
 
-          <button style={styles.disabledButton} disabled>
-            ⚡ Reflejos (próximamente)
+          <button
+            style={styles.gameButton}
+            onClick={() => navigate("/reflejos")}
+          >
+            ⚡ Juego de Reflejos
           </button>
         </div>
 
